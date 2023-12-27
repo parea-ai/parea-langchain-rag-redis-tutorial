@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "parea-langchain-rag-redis-tutorial"
+version = "0.0.1"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.108.0"
+langchain = "^0.0.352"
+openai = "^1.6.1"
+redis = "^5.0.1"
+tiktoken = "^0.5.2"
+pdf2image = "^1.16.3"
+sse-starlette = "^1.8.2"
+sentence-transformers = "^2.2.2"
+parea-ai = "^0.2.25"
+unstructured = {extras = ["pdf"], version = "^0.11.6"}
+
+[tool.poetry.group.dev.dependencies]
+langchain-cli = "^0.0.20"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
