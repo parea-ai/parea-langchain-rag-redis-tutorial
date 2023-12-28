@@ -26,7 +26,7 @@ def ingest_documents():
     text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=1500, chunk_overlap=100, add_start_index=True
     )
-    loader = UnstructuredFileLoader(doc, mode="single", strategy="fast")
+    loader = UnstructuredFileLoader(doc, strategy="fast")
     chunks = loader.load_and_split(text_splitter)
 
     print("Done preprocessing. Created", len(chunks), "chunks of the original pdf")
@@ -43,7 +43,3 @@ def ingest_documents():
         index_schema=INDEX_SCHEMA,
         redis_url=REDIS_URL,
     )
-
-
-if __name__ == "__main__":
-    ingest_documents()

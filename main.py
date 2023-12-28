@@ -1,27 +1,36 @@
-from dotenv import load_dotenv
-from fastapi import FastAPI
+import argparse
 
-from rag.chain import handler
+from ingest import ingest_documents
+from rag.chain import run_chain
 
-load_dotenv()
+parser = argparse.ArgumentParser(description="CLI Helper")
+parser.add_argument(
+    "-q",
+    "--question",
+    type=str,
+    help="The question",
+    default="Which operating segment contributed least to total Nike brand revenue in fiscal 2023?",
+)
+parser.add_argument(
+    "-t",
+    "--target",
+    type=str,
+    help="The target answer",
+    default="Global Brand Divisions",
+)
+parser.add_argument(
+    "--run-eval",
+    action="store_true",
+    help="Run evals if specified",
+)
+parser.add_argument(
+    "--ingest-docs",
+    action="store_true",
+    help="Ingest documents if specified. You need to run this before running the chain.",
+)
+args = parser.parse_args()
 
-app = FastAPI()
-
-
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
-
-
-@app.get("/rag-redis")
-async def chain() -> str:
-    response = chain.invoke(
-        "What was Nike's revenue in 2023?", config={"callbacks": [handler]}
-    )
-    return response
-
-
-if __name__ == "__main__":
-    import uvicorn
-
-    uvicorn.run(app, host="localhost", reload=True)
+if args.ingest_docs:
+    ingest_documents()
+else:
+    run_chain(args.question, args.target, args.run_eval)

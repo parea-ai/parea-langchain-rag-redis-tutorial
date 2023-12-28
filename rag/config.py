@@ -36,15 +36,6 @@ if "OPENAI_API_KEY" not in os.environ:
     raise Exception("Must provide an OPENAI_API_KEY as an env var.")
 
 
-# Whether to enable langchain debugging
-DEBUG = get_boolean_env_var("DEBUG")
-# Set DEBUG env var to "true" if you wish to enable LC debugging module
-if DEBUG:
-    import langchain
-
-    langchain.debug = True
-
-
 # Embedding model
 EMBED_MODEL = os.getenv("EMBED_MODEL", "sentence-transformers/all-MiniLM-L6-v2")
 
@@ -63,11 +54,10 @@ def format_redis_conn_from_env():
 
         # if using RBAC
         password = os.getenv("REDIS_PASSWORD", None)
-        username = os.getenv("REDIS_USERNAME", "default")
         if password is not None:
-            start += f"{username}:{password}@"
+            start += f":{password}@"
 
-        return start + f"{REDIS_HOST}:{REDIS_PORT}"
+        return f"{start}{REDIS_HOST}:{REDIS_PORT}"
 
 
 REDIS_URL = format_redis_conn_from_env()
