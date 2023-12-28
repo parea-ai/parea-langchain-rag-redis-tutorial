@@ -8,7 +8,10 @@ It uses Parea AI to instrument tracing and evaluations.
 
 ## Environment Setup
 
-Set the `OPENAI_API_KEY` environment variable to access the [OpenAI](https://platform.openai.com) models:
+_Copy the `.env.example` file to `.env` and fill in the values. Or export values in shell._
+
+Set the `OPENAI_API_KEY` environment variable to access the [OpenAI](https://platform.openai.com) models.
+
 Set the `PAREA_API_KEY` environment variable to access tracing
 with [PareaAI](https://docs.parea.ai/integrations/langchain):
 
@@ -51,7 +54,7 @@ Start the [Redis server](https://redis.io/docs/install/install-stack/):
 redis-stack-server
 ```
 
-Then, from the root directory run ingest-docs use the CLI helper to load your data into Redis.
+Then, from the root directory run ingest-docs using the CLI helper to load your data into Redis.
 
 ```shell
 python main.py --ingest-docs
@@ -62,3 +65,7 @@ Then run the chain (use --run-eval to also run evaluations defined in evals/eval
 ```shell
 python main.py --run-eval
 ```
+
+## Results
+
+View trace logs on [Parea AI](https://app.parea.ai/logs).
