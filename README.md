@@ -6,6 +6,9 @@ It relies on the sentence transformer `all-MiniLM-L6-v2` for embedding chunks of
 
 It uses Parea AI to instrument tracing and evaluations.
 
+*Updated from the original LangChain
+template [rag-redis](https://github.com/langchain-ai/langchain/tree/master/templates/rag-redis).*
+
 ## Environment Setup
 
 _Copy the `.env.example` file to `.env` and fill in the values. Or export values in shell._
