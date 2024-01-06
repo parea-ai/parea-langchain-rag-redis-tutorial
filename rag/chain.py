@@ -121,4 +121,3 @@ def run_chain(question: str, target: str, run_eval: bool):
             response=response,
             target_answer=target,
         )
-        print("Done")
