@@ -43,3 +43,4 @@ def ingest_documents():
         index_schema=INDEX_SCHEMA,
         redis_url=REDIS_URL,
     )
+    print("Finished.")

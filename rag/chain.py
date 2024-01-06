@@ -113,6 +113,7 @@ def run_chain(question: str, target: str, run_eval: bool):
     print("Response: ", response, "\n")
 
     if run_eval:
+        print("Evals started in thread: \n")
         run_evals(
             trace_id=trace_id,
             question=question,
@@ -120,3 +121,4 @@ def run_chain(question: str, target: str, run_eval: bool):
             response=response,
             target_answer=target,
         )
+        print("Done")
