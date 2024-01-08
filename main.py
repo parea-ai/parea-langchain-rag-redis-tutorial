@@ -1,7 +1,6 @@
 import argparse
 
 from ingest import ingest_documents
-from rag.chain import run_chain
 
 parser = argparse.ArgumentParser(description="CLI Helper")
 parser.add_argument(
@@ -33,4 +32,6 @@ args = parser.parse_args()
 if args.ingest_docs:
     ingest_documents()
 else:
+    from rag.chain import run_chain
+
     run_chain(args.question, args.target, args.run_eval)
